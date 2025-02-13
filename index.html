@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ruby Holidays - Tours &amp; Travels</title>
+  <!-- Google Fonts for a modern, clean look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Base Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+    /* Header Styling (Lighter Background & Flex Layout) */
+    header {
+      background: #ecf0f1; /* Light grey background for better logo visibility */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px; /* Fixed header height */
+      position: relative;
+      padding: 0 20px;
+    }
+    header img.logo {
+      height: 100%; /* Logo takes full height of the header */
+      width: auto;
+      margin-right: 20px;
+    }
+    header h1 {
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0;
+      font-size: 2em;
+      line-height: 80px; /* Vertically center the title */
+    }
+    /* Container Styling */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+      text-align: center;
+    }
+    /* Tour Accordion Styles */
+    .tour-item {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+    .tour-title {
+      font-size: 1.3em;
+      cursor: pointer;
+      position: relative;
+      padding-right: 30px;
+      transition: color 0.3s ease;
+    }
+    .tour-title:hover {
+      color: #f39c12;
+    }
+    .tour-title::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.5em;
+      transition: transform 0.3s ease;
+    }
+    .tour-item.expanded .tour-title::after {
+      transform: rotate(45deg);
+    }
+    .duration-options {
+      margin-top: 10px;
+      padding-left: 20px;
+      display: none;
+    }
+    .tour-item.expanded .duration-options {
+      display: block;
+    }
+    .duration-link {
+      display: block;
+      margin: 8px 0;
+      text-decoration: none;
+      color: #fff;
+      background: #f39c12;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      width: fit-content;
+    }
+    .duration-link:hover {
+      background: #d35400;
+    }
+    /* Itinerary Section Styling */
+    #itinerary {
+      text-align: center;
+      display: none;
+    }
+    #itinerary h2 {
+      margin-bottom: 15px;
+    }
+    #itinerary p {
+      margin-bottom: 20px;
+    }
+    #download-link {
+      color: #f39c12;
+      text-decoration: underline;
+    }
+    .back-btn {
+      background: #2c3e50;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s ease;
+    }
+    .back-btn:hover {
+      background: #1a242f;
+    }
+    /* Footer Styling */
+    footer {
+      background: #f4f4f4;
+      padding: 15px;
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #ddd;
+    }
+    footer a {
+      color: #2c3e50;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Logo and Title -->
+  <header>
+    <!-- Replace the image path with your actual logo location -->
+    <img src="Ruby_Holidays_Final.png" alt="Ruby Holidays Logo" class="logo" />
+    <h1>Ruby Holidays</h1>
+  </header>
+
+  <!-- Home Section: List of Tours -->
+  <div id="home" class="container">
+    <h2>Explore Our Tours</h2>
+    
+    <!-- Georgia -->
+    <div class="tour-item" id="tour-georgia">
+      <div class="tour-title">Georgia</div>
+      <div class="duration-options">
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 6 Nights & 7 Days (4N Tbilisi 2N Batumi )" 
+          data-file="https://drive.google.com/uc?export=download&id=1hiVwu-6kZkSkiQIyENpZKDv2ULnG8LeE"
+        >
+          6 Nights & 7 Days (4N Tbilisi 2N Batumi )
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 5 Nights & 6 Days (4N Tbilisi 1N Gudauri )" 
+          data-file="https://drive.google.com/uc?export=download&id=1pZhzanbHqIRg4q08iZvBbdtMiPXJexbW"
+        >
+          5 Nights & 6 Days (4N Tbilisi 1N Gudauri )
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 07 Nights & 08 Days (4N Tbilisi 1N Gudauri 2N Batumi )" 
+          data-file="https://drive.google.com/uc?export=download&id=19uXrZlRVXbsHruJPOx86Q0YVxTFgZa3k"
+        >
+          07 Nights & 08 Days (4N Tbilisi 1N Gudauri 2N Batumi )
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 3 Nights & 4 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=1eZKaIWEY-1Cg6CnyEdj3g27QLjDd6DfI"
+        >
+          3 Nights & 4 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 4 Nights & 5 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=18mnZYL8pAF0WjskZBo8vPEkHS7N19diB"
+        >
+          4 Nights & 5 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 6 Nights & 7 Days (3N Tbilisi 1N Gudauri 2N Batumi )" 
+          data-file="https://drive.google.com/uc?export=download&id=1cCyc6L_xEpBC1FwMfjBm9SmyG1SsrXB2"
+        >
+          6 Nights & 7 Days (3N Tbilisi 1N Gudauri 2N Batumi )
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 5 Nights & 6 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=1_aKuc0zzo3L8eT_NLfY1K9UHh7exzV3R"
+        >
+          5 Nights & 6 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 12 Nights & 13 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=1yI5xcu-DPoRhnr5cvvV2-Pmk_K9pL83i"
+        >
+          12 Nights & 13 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Georgia - 6 Nights & 7 Days (3N Tbilisi 1n Kutaisi 2N Batumi )" 
+          data-file="https://drive.google.com/uc?export=download&id=13fWJymwWVMfiyfZqviZ-mVOzd1precZ2"
+        >
+          6 Nights & 7 Days (3N Tbilisi 1n Kutaisi 2N Batumi )
+        </a>
+      </div>
+    </div>
+    
+    <!-- Azerbaijan -->
+    <div class="tour-item" id="tour-azerbaijan">
+      <div class="tour-title">Azerbaijan</div>
+      <div class="duration-options">
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 7 Nights & 8 Days with Sheki" 
+          data-file="https://drive.google.com/uc?export=download&id=1xzyV88acjCfwZOotV5R5w8kwcCsU7gRu"
+        >
+          7 Nights & 8 Days with Sheki
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 8 Nights & 9 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=1lGB8-ZUo2GVY8AzHP9_ulS76yK9B6DRt"
+        >
+          8 Nights & 9 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 6 Nights & 7 Days with Shahdag" 
+          data-file="https://drive.google.com/uc?export=download&id=1BtztbdAKYK8cltueRJsNvKQj7df0ef5t"
+        >
+          6 Nights & 7 Days with Shahdag
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 5 Nights Baku with shahdag day tour" 
+          data-file="https://drive.google.com/uc?export=download&id=1ZrnMGpuXyL-Y4WGE9Z98bloaNQ8BEBb6"
+        >
+          5 Nights Baku with shahdag day tour
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 5 Nights & 6 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=1-LTcnxEC9jJaEU5njsWHkn9bRveY-Qq6"
+        >
+          5 Nights & 6 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 6 Nights & 7 Days Basic" 
+          data-file="https://drive.google.com/uc?export=download&id=1NUjTRDFheLahhzjj89uXId2SNwbpKlOJ"
+        >
+          6 Nights & 7 Days Basic
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 6 Nights & 7 Days with Ganja" 
+          data-file="https://drive.google.com/uc?export=download&id=1x4sB_eCYMc7LmoiU2sFGtuiCPON9Bz25"
+        >
+          6 Nights & 7 Days with Ganja
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 5 Night Baku 1N Shahdag" 
+          data-file="https://drive.google.com/uc?export=download&id=1idRaMdzQU_n_XAnFdwoJZfCb9GZfumru"
+        >
+          5 Night Baku 1N Shahdag
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 4 Nights Baku with shahdag day tour" 
+          data-file="https://drive.google.com/uc?export=download&id=1cpo7RxeQGeyyOVlK29rYng9dPb6mb-Np"
+        >
+          4 Nights Baku with shahdag day tour
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 4 Nights Baku 1 Nights Gabala" 
+          data-file="https://drive.google.com/uc?export=download&id=1rd7AtU4e7orZNNqdEO5w935RtJLH73L8"
+        >
+          4 Nights Baku 1 Nights Gabala
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 4 Night Baku 2N Shahdag" 
+          data-file="https://drive.google.com/uc?export=download&id=1mY1sVXhnuA2FAmCdhcJxnt39QDSSogfV"
+        >
+          4 Night Baku 2N Shahdag
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 3 N Baku with shahdag day tour" 
+          data-file="https://drive.google.com/uc?export=download&id=1TMaJkkso5qF5c3K64E2OUZPb-DVp07kJ"
+        >
+          3 N Baku with shahdag day tour
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 3 N Baku 2 N Shahdag" 
+          data-file="https://drive.google.com/uc?export=download&id=1GTqHGtOF9P3UVCE4Et3EKuZWL2Nx3GBb"
+        >
+          3 N Baku 2 N Shahdag
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan - 3 N Baku 2 N Gabala" 
+          data-file="https://drive.google.com/uc?export=download&id=12rFoU9b-NfKdt4mWUV-PL3YpjmWs_7d5"
+        >
+          3 N Baku 2 N Gabala
+        </a>
+      </div>
+    </div>
+
+    <!-- Azerbaijan & Georgia -->
+    <div class="tour-item" id="tour-azerbaijan-georgia">
+      <div class="tour-title">Azerbaijan & Georgia</div>
+      <div class="duration-options">
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan & Georgia - 09 Nights 10 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=1bFfrZcm65KkekVcvhfGp8cNbMt05iCuB"
+        >
+          09 Nights 10 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan & Georgia - 08 Nights 09 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=16CsbEBWi2XUaTrNInTZsoej8Idp1mbke"
+        >
+          08 Nights 09 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan & Georgia - 11 Nights 12 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=1bPt6TgQpBGfrZAY4CJECzm3Jzr4gQile"
+        >
+          11 Nights 12 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan & Georgia - 10 Nights 11 Days" 
+          data-file="https://drive.google.com/uc?export=download&id=12_btiAv9t8_kv8USiZNGqs870CyNs_qY"
+        >
+          10 Nights 11 Days
+        </a>
+        <a 
+          class="duration-link" 
+          href="#" 
+          data-tour="Azerbaijan & Georgia - 09 Nights 10 Days (5N Baku 3N Tbilisi 1N Gudauri )" 
+          data-file="https://drive.google.com/uc?export=download&id=1feCAd7G6w2g7PgrJnfnQgn6lbT-7r8iy"
+        >
+          09 Nights 10 Days (5N Baku 3N Tbilisi 1N Gudauri )
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Itinerary Section Displayed When a Duration is Selected -->
+  <div id="itinerary" class="container">
+    <h2 id="tour-title">Tour Itinerary</h2>
+    <p>
+      Your download should begin shortly. If it doesn't, please 
+      <a id="download-link" href="#">click here</a>.
+    </p>
+    <button class="back-btn" id="back-button">Back to Tours</button>
+  </div>
+
+  <!-- Footer with Contact Details -->
+  <footer>
+    <p>
+      Contact Us: Phone: +918928064425 | 
+      Email: <a href="mailto:sales@rubyholidaysonline.com">sales@rubyholidaysonline.com</a>
+    </p>
+  </footer>
+
+  <!-- JavaScript for Interactivity -->
+  <script>
+    // Toggle accordion functionality for tour items
+    const tourTitles = document.querySelectorAll('.tour-title');
+    tourTitles.forEach(title => {
+      title.addEventListener('click', function () {
+        // Toggle the expanded class on the tour item
+        this.parentElement.classList.toggle('expanded');
+      });
+    });
+
+    // Handle duration link clicks
+    const durationLinks = document.querySelectorAll('.duration-link');
+    const homeSection = document.getElementById('home');
+    const itinerarySection = document.getElementById('itinerary');
+    const tourTitleDisplay = document.getElementById('tour-title');
+    const downloadLink = document.getElementById('download-link');
+    const backButton = document.getElementById('back-button');
+
+    durationLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();  // Prevent default anchor behavior
+
+        // Retrieve tour information from data attributes
+        const tourName = this.getAttribute('data-tour');
+        const fileUrl = this.getAttribute('data-file');
+
+        // Update the itinerary section
+        tourTitleDisplay.textContent = tourName + ' Itinerary';
+        downloadLink.href = fileUrl;
+        downloadLink.setAttribute('download', '');
+
+        // Toggle view: hide home, show itinerary section
+        homeSection.style.display = 'none';
+        itinerarySection.style.display = 'block';
+
+        // Trigger the PDF download
+        triggerDownload(fileUrl);
+      });
+    });
+
+    // Back button: return to the tour list view
+    backButton.addEventListener('click', function () {
+      itinerarySection.style.display = 'none';
+      homeSection.style.display = 'block';
+    });
+
+    // Function to programmatically trigger a download of the PDF
+    function triggerDownload(url) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.setAttribute('download', '');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>
