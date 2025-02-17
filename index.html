@@ -19,27 +19,27 @@
       color: #333;
       line-height: 1.6;
     }
-    /* Header Styling (Lighter Background & Flex Layout) */
+    /* Responsive Header Styling */
     header {
       background: #ecf0f1; /* Light grey background for better logo visibility */
       display: flex;
+      flex-wrap: wrap; /* Allow logo & title to wrap on smaller screens */
       align-items: center;
       justify-content: center;
-      height: 80px; /* Fixed header height */
-      position: relative;
-      padding: 0 20px;
+      padding: 10px 20px;
     }
     header img.logo {
-      height: 100%; /* Logo takes full height of the header */
+      height: 60px; /* Logo scaled for mobile */
       width: auto;
       margin-right: 20px;
+      margin-bottom: 10px; /* Space under logo if it wraps */
     }
     header h1 {
       font-weight: 700;
       letter-spacing: 1px;
       margin: 0;
-      font-size: 2em;
-      line-height: 80px; /* Vertically center the title */
+      font-size: 1.8em;
+      line-height: 1.2;
     }
     /* Container Styling */
     .container {
@@ -141,6 +141,29 @@
     footer a {
       color: #2c3e50;
       text-decoration: none;
+    }
+
+    /* Media Query for Smaller Screens */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column; /* Stack logo & title vertically */
+        padding: 10px;
+      }
+      header img.logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      header h1 {
+        font-size: 1.5em;
+        text-align: center;
+      }
+      .container {
+        margin: 20px auto;
+        padding: 15px;
+      }
+      .duration-link {
+        width: 100%;   /* Make links take full width for easier tapping */
+      }
     }
   </style>
 </head>
